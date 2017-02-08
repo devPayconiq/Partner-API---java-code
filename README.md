@@ -201,7 +201,7 @@
 	'GET' - https://dev.payconiq.com/v1/partners/{id}/transactions/{transaction_id}
 	```
 	
-###### Example Request:
+	###### Example Request:
     	
 	```
     	curl -X GET -H "Content-Type: application/json" -H "Authorization: 988b0157-f3bd-47ea-a885-4cae37cd37af"
