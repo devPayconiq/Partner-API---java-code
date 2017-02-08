@@ -196,16 +196,13 @@
   After creating the transaction take the url of the location header 
   (**i.e: location: https://dev.payconiq.com/v1/partners/58961529445edf0001fbb2b3/transactions/5899b942ab9bed000125295f**) and use a GET operation with the Authorization token to get the information regarding the transaction that was created in the previous step.
 
-###### Definition:
-    ```
-    'GET' - https://dev.payconiq.com/v1/partners/{id}/transactions/{transaction_id}
-    ```
+	###### Definition:
+	```
+	'GET' - https://dev.payconiq.com/v1/partners/{id}/transactions/{transaction_id}
+	```
 	
-###### Example Request:
-    ```shell
-    curl -X GET -H "Content-Type: application/json" -H "Authorization: 988b0157-f3bd-47ea-a885-4cae37cd37af"
-    "https://dev.payconiq.com/v1/partners/58961529445edf0001fbb2b3/transactions/58999c7e98fff10001106ffd"
-    ```
-
-
-
+	###### Example Request:
+    	```shell
+    	curl -X GET -H "Content-Type: application/json" -H "Authorization: 988b0157-f3bd-47ea-a885-4cae37cd37af"
+    	"https://dev.payconiq.com/v1/partners/58961529445edf0001fbb2b3/transactions/58999c7e98fff10001106ffd"
+    	```
