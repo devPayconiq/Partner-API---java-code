@@ -203,7 +203,7 @@
 	
 ###### Example Request:
     	
-	```shell
+	```
     	curl -X GET -H "Content-Type: application/json" -H "Authorization: 988b0157-f3bd-47ea-a885-4cae37cd37af"
     	"https://dev.payconiq.com/v1/partners/58961529445edf0001fbb2b3/transactions/58999c7e98fff10001106ffd"
     	```
