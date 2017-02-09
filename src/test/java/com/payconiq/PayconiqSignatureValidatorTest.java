@@ -8,19 +8,39 @@ import javax.xml.bind.DatatypeConverter;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-
 import static junit.framework.TestCase.assertTrue;
+import java.util.Base64;
 
 public class PayconiqSignatureValidatorTest {
 
     private static final String SHA_256_WITH_RSA = "SHA256WithRSA";
 
     private static final Logger LOG = LoggerFactory.getLogger(PayconiqSignatureValidatorTest.class);
+
+    private String keyFolderPath = "";
+
+    private String getPublicKeyPath() {
+        /**
+         * Convert public key into a DER public key
+         * $ openssl rsa -in private_key.pem -pubout -outform DER -out public_key.der
+         */
+        return keyFolderPath + "public_key.der";
+    }
+
+    private String getPrivateKeyPath() {
+        /**
+         * Convert private key into a DER private key
+         * $ openssl pkcs8 -topk8 -inform PEM -outform DER -in private_key.pem -out private_key.der -nocrypt
+         */
+        return keyFolderPath + "private_key.der";
+    }
+
 
     @Test
     public void testSDDTransactionSignature() throws Exception {
@@ -73,21 +93,6 @@ public class PayconiqSignatureValidatorTest {
         getSignature(privateKeyPath, publicKeyPath, builder);
     }
 
-    private String getPublicKeyPath() {
-        /**
-         * Convert public key into a DER public key
-         * $ openssl rsa -in private_key.pem -pubout -outform DER -out public_key.der
-         */
-        return "public_key.der";
-    }
-
-    private String getPrivateKeyPath() {
-        /**
-         * Convert private key into a DER private key
-         * $ openssl pkcs8 -topk8 -inform PEM -outform DER -in private_key.pem -out private_key.der -nocrypt
-         */
-        return "private_key.der";
-    }
 
     private void getSignature(String privateKeyPath, String publicKeyPath, StringBuilder builder) throws Exception {
         PrivateKey privateKey = getPrivateKey(privateKeyPath);
@@ -183,10 +188,10 @@ public class PayconiqSignatureValidatorTest {
     }
 
     private String bytesToBase64(byte[] bytes) {
-        return DatatypeConverter.printBase64Binary(bytes);
+        return  Base64.getEncoder().encodeToString(bytes);
     }
 
     public static byte[] base64ToBytes(String base64) {
-        return DatatypeConverter.parseBase64Binary(base64);
+        return Base64.getDecoder().decode(base64.getBytes(StandardCharsets.UTF_8));
     }
 }
