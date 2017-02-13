@@ -100,7 +100,7 @@
 
     StringBuilder builder = new StringBuilder();
     builder.append(partnerId).append(senderId).
-            append(senderIBAN).append(currency).append(amount);
+            append(senderIBAN).append(amount).append(currency);
 
     PrivateKey privateKey = getPrivateKey(privateKeyPath); //in DER format
     Signature sig = Signature.getInstance("SHA256WithRSA");
@@ -132,7 +132,7 @@
 
     StringBuilder builder = new StringBuilder();
     builder.append(partnerId).append(senderId).
-            append(senderIBAN).append(currency).append(amount);
+            append(senderIBAN).append(amount).append(currency);
 
     PrivateKey privateKey = getPrivateKey(privateKeyPath);  //in DER format
     Signature sig = Signature.getInstance("SHA256WithRSA");
@@ -167,7 +167,7 @@
     StringBuilder builder = new StringBuilder();
     builder.append(partnerId).append(senderId)
         .append(senderIBAN).append(recipientId)
-        .append(recipientIBAN).append(currency).append(amount);
+        .append(recipientIBAN).append(amount).append(currency);
 
     PrivateKey privateKey = getPrivateKey(privateKeyPath);  //in DER format
     Signature sig = Signature.getInstance("SHA256WithRSA");
